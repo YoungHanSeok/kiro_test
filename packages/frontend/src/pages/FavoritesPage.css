@@ -1,0 +1,533 @@
+/**
+ * 즐겨찾기 페이지 스타일
+ */
+
+.favorites-page {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* 로딩 상태 */
+.favorites-page.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 3rem;
+}
+
+.loading-spinner {
+  font-size: 3rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* 오류 상태 */
+.favorites-page.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.error-container {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 1rem;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.error-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #dc2626;
+  margin: 0 0 1rem 0;
+}
+
+.error-container p {
+  color: #6b7280;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.retry-button,
+.home-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.retry-button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.retry-button:hover {
+  background: #2563eb;
+}
+
+.home-button {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.home-button:hover {
+  background: #e5e7eb;
+}
+
+/* 브레드크럼 네비게이션 */
+.favorites-page__breadcrumb {
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.breadcrumb-link {
+  color: #3b82f6;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+  color: #2563eb;
+}
+
+.breadcrumb-icon {
+  font-size: 1rem;
+}
+
+.breadcrumb-separator {
+  margin: 0 0.5rem;
+  color: #9ca3af;
+}
+
+.breadcrumb-current {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* 헤더 */
+.favorites-page__header {
+  background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+  color: white;
+  padding: 3rem 1rem;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-info {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.page-description {
+  font-size: 1.2rem;
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.clear-all-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.clear-all-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.clear-icon {
+  font-size: 1.1rem;
+}
+
+/* 빈 상태 */
+.favorites-page__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem 1rem;
+}
+
+.empty-container {
+  text-align: center;
+  max-width: 500px;
+}
+
+.empty-icon {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  opacity: 0.6;
+}
+
+.empty-container h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 1rem 0;
+}
+
+.empty-container p {
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+.browse-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #3b82f6;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.browse-button:hover {
+  background: #2563eb;
+}
+
+.browse-icon {
+  font-size: 1.2rem;
+}
+
+/* 검색 및 필터 섹션 */
+.favorites-page__controls {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.5rem 1rem;
+}
+
+.controls-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.search-section {
+  max-width: 600px;
+}
+
+.sort-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sort-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.sort-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sort-button:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.sort-button.active {
+  background: #ec4899;
+  border-color: #ec4899;
+  color: white;
+}
+
+.sort-icon {
+  font-size: 1rem;
+}
+
+.sort-text {
+  white-space: nowrap;
+}
+
+/* 결과 헤더 */
+.favorites-page__results-header {
+  padding: 1.5rem 1rem;
+  background: #f9fafb;
+}
+
+.results-info {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.results-info h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.results-count {
+  color: #6b7280;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.total-count {
+  color: #9ca3af;
+}
+
+/* 배경화면 그리드 섹션 */
+.favorites-page__wallpapers {
+  padding: 2rem 1rem;
+  background: #f9fafb;
+}
+
+/* 오류 배너 */
+.favorites-page__error-banner {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 400px;
+  z-index: 1000;
+}
+
+.favorites-page__error-banner .error-icon {
+  font-size: 1.2rem;
+}
+
+.dismiss-button {
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  margin-left: auto;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.dismiss-button:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .favorites-page__breadcrumb,
+  .favorites-page__controls,
+  .favorites-page__results-header,
+  .favorites-page__wallpapers {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .favorites-page__header {
+    padding: 2rem 1rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title-icon {
+    font-size: 2.5rem;
+  }
+
+  .page-description {
+    font-size: 1rem;
+  }
+
+  .controls-container {
+    gap: 1rem;
+  }
+
+  .sort-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .sort-options {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sort-button {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .results-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .empty-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .empty-container p {
+    font-size: 1rem;
+  }
+
+  .favorites-page__error-banner {
+    top: 0.5rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    max-width: none;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .retry-button,
+  .home-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .title-icon {
+    font-size: 2rem;
+  }
+
+  .empty-icon {
+    font-size: 4rem;
+  }
+
+  .sort-button {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .sort-text {
+    display: none;
+  }
+
+  .error-container {
+    padding: 2rem 1rem;
+  }
+
+  .clear-all-button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}

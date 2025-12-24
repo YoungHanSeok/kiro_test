@@ -1,0 +1,82 @@
+/* 관리자 패널 스타일 */
+
+.admin-panel {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+
+.admin-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.admin-button:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+.admin-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.upload-button {
+  background-color: #28a745;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.upload-button:hover:not(:disabled) {
+  background-color: #218838;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.logout-button {
+  background-color: #6c757d;
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.logout-button:hover:not(:disabled) {
+  background-color: #545b62;
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .admin-panel {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .admin-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .admin-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "nature",
+    "name": "자연",
+    "description": "아름다운 자연 풍경과 경치",
+    "iconUrl": "/uploads/icons/nature-icon.svg",
+    "wallpaperCount": 11,
+    "isActive": true,
+    "sortOrder": 1,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "space",
+    "name": "우주",
+    "description": "신비로운 우주와 천체의 모습",
+    "iconUrl": "/uploads/icons/space-icon.svg",
+    "wallpaperCount": 10,
+    "isActive": true,
+    "sortOrder": 2,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "city",
+    "name": "도시",
+    "description": "현대적인 도시의 풍경과 건축물",
+    "iconUrl": "/uploads/icons/city-icon.svg",
+    "wallpaperCount": 10,
+    "isActive": true,
+    "sortOrder": 3,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "abstract",
+    "name": "추상",
+    "description": "창의적이고 예술적인 추상 이미지",
+    "iconUrl": "/uploads/icons/abstract-icon.svg",
+    "wallpaperCount": 10,
+    "isActive": true,
+    "sortOrder": 4,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "minimal",
+    "name": "미니멀",
+    "description": "깔끔하고 단순한 미니멀 디자인",
+    "iconUrl": "/uploads/icons/minimal-icon.svg",
+    "wallpaperCount": 11,
+    "isActive": true,
+    "sortOrder": 5,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]

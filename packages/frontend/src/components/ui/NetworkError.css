@@ -1,0 +1,222 @@
+/**
+ * NetworkError 컴포넌트 스타일
+ */
+
+.network-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.network-error--compact {
+  padding: 2rem 1.5rem;
+}
+
+.network-error__content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.network-error__icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.network-error--compact .network-error__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.network-error__text {
+  margin-bottom: 1.5rem;
+}
+
+.network-error--compact .network-error__text {
+  margin-bottom: 1rem;
+}
+
+.network-error__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #dc2626;
+  margin: 0 0 0.5rem 0;
+}
+
+.network-error--compact .network-error__title {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.network-error__message {
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.network-error--compact .network-error__message {
+  font-size: 0.875rem;
+}
+
+.network-error__retry-button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.network-error--compact .network-error__retry-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.network-error__retry-button:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.network-error__retry-button:focus {
+  outline: none;
+  ring: 2px solid #3b82f6;
+  ring-offset: 2px;
+}
+
+.network-error__retry-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.retry-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.retry-icon {
+  transition: transform 0.2s ease;
+}
+
+.network-error__retry-button:hover .retry-icon {
+  transform: rotate(180deg);
+}
+
+/* 인라인 네트워크 오류 */
+.inline-network-error {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.inline-network-error__icon {
+  font-size: 1rem;
+}
+
+.inline-network-error__message {
+  flex: 1;
+}
+
+.inline-network-error__retry {
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.inline-network-error__retry:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.inline-network-error__retry:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 애니메이션 */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .network-error {
+    padding: 2rem 1rem;
+  }
+  
+  .network-error__icon {
+    font-size: 2.5rem;
+  }
+  
+  .network-error__title {
+    font-size: 1.125rem;
+  }
+  
+  .network-error__retry-button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .network-error {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .network-error__title {
+    color: #ef4444;
+  }
+  
+  .network-error__message {
+    color: #d1d5db;
+  }
+  
+  .inline-network-error {
+    background: #1f1f1f;
+    border-color: #ef4444;
+    color: #ef4444;
+  }
+  
+  .inline-network-error__retry {
+    color: #ef4444;
+  }
+  
+  .inline-network-error__retry:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.1);
+  }
+}
+
+/* 접근성 */
+@media (prefers-reduced-motion: reduce) {
+  .retry-spinner {
+    animation: none;
+  }
+  
+  .retry-icon {
+    transition: none;
+  }
+  
+  .network-error__retry-button:hover .retry-icon {
+    transform: none;
+  }
+}

@@ -1,0 +1,200 @@
+/**
+ * SkeletonLoader 컴포넌트 스타일
+ */
+
+.skeleton-loader {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+}
+
+.skeleton-loader--animated {
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+/* 스켈레톤 타입별 스타일 */
+.skeleton-loader--text {
+  height: 1em;
+  border-radius: 4px;
+}
+
+.skeleton-loader--rectangular {
+  border-radius: 8px;
+}
+
+.skeleton-loader--circular {
+  border-radius: 50%;
+}
+
+/* 배경화면 카드 스켈레톤 */
+.skeleton-wallpaper-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-wallpaper-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-wallpaper-card__info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-wallpaper-card__title {
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-wallpaper-card__stats {
+  height: 16px;
+  width: 60%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-wallpaper-card__tags {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-tag {
+  height: 20px;
+  width: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 12px;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-tag:nth-child(2) {
+  width: 80px;
+  animation-delay: 0.1s;
+}
+
+.skeleton-tag:nth-child(3) {
+  width: 50px;
+  animation-delay: 0.2s;
+}
+
+/* 스켈레톤 그리드 */
+.skeleton-grid {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.skeleton-grid--grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.skeleton-grid--masonry {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* 애니메이션 */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .skeleton-grid--grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-grid {
+    gap: 16px;
+  }
+  
+  .skeleton-grid--grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .skeleton-wallpaper-card__info {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton-grid--grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .skeleton-loader {
+    background: linear-gradient(90deg, #404040 25%, #505050 50%, #404040 75%);
+    background-size: 200% 100%;
+  }
+  
+  .skeleton-wallpaper-card {
+    background: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .skeleton-wallpaper-card__image,
+  .skeleton-wallpaper-card__title,
+  .skeleton-wallpaper-card__stats,
+  .skeleton-tag {
+    background: linear-gradient(90deg, #404040 25%, #505050 50%, #404040 75%);
+    background-size: 200% 100%;
+  }
+}
+
+/* 접근성 - 애니메이션 감소 설정 */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-loader--animated,
+  .skeleton-wallpaper-card__image,
+  .skeleton-wallpaper-card__title,
+  .skeleton-wallpaper-card__stats,
+  .skeleton-tag {
+    animation: none;
+  }
+  
+  .skeleton-wallpaper-card {
+    animation: skeleton-pulse-reduced 2s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-pulse-reduced {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}

@@ -1,0 +1,331 @@
+/**
+ * WallpaperGrid 컴포넌트 스타일
+ */
+
+.wallpaper-grid {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 그리드 컨테이너 */
+.wallpaper-grid__container {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+/* 기본 그리드 레이아웃 */
+.wallpaper-grid__container.grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* 마소니 레이아웃 (추후 구현 가능) */
+.wallpaper-grid__container.masonry {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: masonry; /* 브라우저 지원 시 */
+}
+
+/* 화면 크기별 스타일 */
+.wallpaper-grid--wide .wallpaper-grid__container.grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.wallpaper-grid--desktop .wallpaper-grid__container.grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.wallpaper-grid--tablet {
+  padding: 0 16px;
+}
+
+.wallpaper-grid--tablet .wallpaper-grid__container.grid {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.wallpaper-grid--mobile {
+  padding: 0 12px;
+}
+
+.wallpaper-grid--mobile .wallpaper-grid__container.grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* 터치 디바이스 최적화 */
+.wallpaper-grid--touch {
+  /* 터치 디바이스에서 스크롤 성능 최적화 */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.wallpaper-grid--touch .wallpaper-grid__container {
+  /* 터치 디바이스에서 더 큰 간격 */
+  gap: 16px;
+}
+
+.wallpaper-grid--touch.wallpaper-grid--mobile .wallpaper-grid__container {
+  gap: 14px;
+}
+
+/* 반응형 그리드 (기존 미디어 쿼리 유지) */
+@media (max-width: 1200px) {
+  .wallpaper-grid__container.grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wallpaper-grid {
+    padding: 0 12px;
+  }
+  
+  .wallpaper-grid__container.grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallpaper-grid__container.grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* 터치 디바이스 전용 스타일 */
+@media (hover: none) and (pointer: coarse) {
+  .wallpaper-grid__container {
+    /* 터치 디바이스에서 더 부드러운 스크롤 */
+    scroll-snap-type: y proximity;
+  }
+  
+  .wallpaper-grid--mobile .wallpaper-grid__container {
+    /* 모바일에서 카드 간격 조정 */
+    gap: 16px;
+  }
+}
+
+/* 로딩 스켈레톤 */
+.wallpaper-skeleton {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.wallpaper-skeleton__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.wallpaper-skeleton__info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wallpaper-skeleton__title {
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.wallpaper-skeleton__stats {
+  height: 16px;
+  width: 60%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* 빈 상태 */
+.wallpaper-grid__empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+
+.wallpaper-grid__empty .empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.wallpaper-grid__empty h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.wallpaper-grid__empty p {
+  font-size: 16px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* 무한 스크롤 로딩 */
+.wallpaper-grid__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: #666;
+}
+
+.wallpaper-grid__loading .loading-spinner {
+  font-size: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 페이지네이션 */
+.wallpaper-grid__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+.pagination-button {
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-button:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.pagination-button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  padding: 0 8px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* 무한 스크롤 끝 메시지 */
+.wallpaper-grid__end {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+}
+
+.wallpaper-grid__end p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .wallpaper-skeleton {
+    background: #2a2a2a;
+  }
+  
+  .wallpaper-skeleton__image,
+  .wallpaper-skeleton__title,
+  .wallpaper-skeleton__stats {
+    background: linear-gradient(90deg, #404040 25%, #505050 50%, #404040 75%);
+    background-size: 200% 100%;
+  }
+  
+  .wallpaper-grid__empty {
+    color: #cccccc;
+  }
+  
+  .wallpaper-grid__empty h3 {
+    color: #ffffff;
+  }
+  
+  .wallpaper-grid__loading {
+    color: #cccccc;
+  }
+  
+  .pagination-button {
+    background: #2a2a2a;
+    color: #ffffff;
+    border-color: #555;
+  }
+  
+  .pagination-button:hover {
+    background: #404040;
+    border-color: #666;
+  }
+  
+  .pagination-ellipsis {
+    color: #999;
+  }
+  
+  .wallpaper-grid__end {
+    color: #999;
+    border-top-color: #444;
+  }
+}

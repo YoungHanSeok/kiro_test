@@ -1,0 +1,155 @@
+/**
+ * 광고 컴포넌트 스타일
+ */
+
+/* 기본 광고 컨테이너 */
+.adsense-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  min-height: 100px;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 반응형 배너 광고 래퍼 */
+.responsive-banner-wrapper {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.responsive-banner-ad {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* AdSense ins 요소 크기 제한 */
+.adsbygoogle {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* 상단 배너 광고 */
+.ad-banner-top,
+.ad-banner-detail-top,
+.ad-banner-middle {
+  margin: 1rem 0;
+  max-width: 100%;
+  min-height: 90px;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.ad-banner-top .adsense-container,
+.ad-banner-detail-top .adsense-container,
+.ad-banner-middle .adsense-container {
+  min-height: 90px;
+  max-height: 250px;
+  padding: 0.5rem;
+}
+
+/* 하단 배너 광고 */
+.ad-banner-bottom,
+.ad-banner-detail-bottom {
+  margin: 2rem 0 1rem 0;
+  max-width: 100%;
+  min-height: 90px;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+/* 사이드바 광고 */
+.ad-sidebar,
+.ad-detail-sidebar {
+  margin: 1rem 0;
+  position: sticky;
+  top: 2rem;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ad-sidebar .adsense-container,
+.ad-detail-sidebar .adsense-container {
+  width: 100%;
+  max-width: 300px;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .adsense-container {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+  }
+  
+  .ad-sidebar,
+  .ad-detail-sidebar {
+    position: static;
+    margin: 1rem auto;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adsense-container {
+    margin: 0.25rem 0;
+    padding: 0.25rem;
+  }
+}
+
+/* 로딩 상태 */
+.adsense-container.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* 광고 차단기 감지 메시지 */
+.ad-blocked-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  color: #856404;
+  text-align: center;
+}
+
+.ad-blocked-message .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ad-blocked-message .title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.ad-blocked-message .description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}

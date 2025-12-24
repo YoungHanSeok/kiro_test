@@ -1,0 +1,340 @@
+/**
+ * 테마 페이지 스타일
+ */
+
+.theme-page {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* 브레드크럼 네비게이션 */
+.theme-page__breadcrumb {
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.breadcrumb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.breadcrumb-link {
+  color: #3b82f6;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.breadcrumb-link:hover {
+  color: #2563eb;
+}
+
+.breadcrumb-icon {
+  font-size: 1rem;
+}
+
+.breadcrumb-separator {
+  color: #9ca3af;
+  font-weight: normal;
+}
+
+.breadcrumb-current {
+  color: #6b7280;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 헤더 섹션 */
+.theme-page__header {
+  padding: 2rem 1rem;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.theme-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.theme-icon {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.theme-description {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.theme-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.wallpaper-count {
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* 배경화면 그리드 섹션 */
+.theme-page__wallpapers {
+  padding: 2rem 1rem;
+}
+
+.wallpapers-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem;
+}
+
+.wallpapers-content--with-sidebar {
+  display: grid;
+  grid-template-columns: minmax(250px, 300px) 1fr minmax(250px, 300px);
+  gap: 1.5rem;
+  align-items: start;
+  width: 100%;
+  max-width: 1600px;
+}
+
+.wallpapers-content--without-sidebar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.wallpapers-content--without-sidebar .wallpapers-main {
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* 사이드바 광고 */
+.wallpapers-sidebar {
+  position: sticky;
+  top: 2rem;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden; /* 광고 오버플로우 방지 */
+}
+
+.wallpapers-sidebar--left,
+.wallpapers-sidebar--right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.wallpapers-sidebar--left {
+  justify-self: start;
+}
+
+.wallpapers-sidebar--right {
+  justify-self: end;
+}
+
+/* 메인 그리드 */
+.wallpapers-main {
+  min-width: 0;
+  width: 100%;
+  overflow: hidden; /* 콘텐츠 오버플로우 방지 */
+}
+
+/* 모바일 광고 컨테이너 */
+.mobile-ad-container {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+/* 광고 스타일 */
+.theme-page__ad-top,
+.theme-page__ad-bottom {
+  padding: 1rem;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.theme-page__ad-top {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.theme-page__ad-bottom {
+  border-top: 1px solid #e5e7eb;
+}
+
+/* 오류 상태 */
+.theme-page.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* 오류 배너 */
+.theme-page__error-banner {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 400px;
+  z-index: 1000;
+}
+
+.theme-page__error-banner .error-icon {
+  font-size: 1.2rem;
+}
+
+.dismiss-button {
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  margin-left: auto;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.dismiss-button:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .wallpapers-content--with-sidebar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .wallpapers-content--with-sidebar .wallpapers-main {
+    grid-column: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .wallpapers-sidebar {
+    display: none; /* 태블릿과 모바일에서는 사이드바 숨김 */
+  }
+}
+
+@media (max-width: 1024px) {
+  .wallpapers-content--with-sidebar {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .wallpapers-sidebar {
+    position: static;
+    display: none; /* 태블릿에서는 사이드바 광고 숨김 */
+  }
+
+  .theme-title {
+    font-size: 2rem;
+  }
+
+  .theme-page__header {
+    padding: 1.5rem 1rem;
+  }
+
+  .theme-page__wallpapers {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-page__breadcrumb {
+    padding: 0.75rem;
+  }
+
+  .breadcrumb-container {
+    gap: 0.25rem;
+  }
+
+  .theme-title {
+    font-size: 1.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .theme-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .theme-description {
+    font-size: 1rem;
+  }
+
+  .theme-page__header {
+    padding: 1rem;
+  }
+
+  .theme-page__wallpapers {
+    padding: 1rem;
+  }
+
+  .theme-page__error-banner {
+    top: 0.5rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-title {
+    font-size: 1.5rem;
+  }
+
+  .theme-description {
+    font-size: 0.9rem;
+  }
+
+  .theme-page__header {
+    padding: 0.75rem;
+  }
+
+  .theme-page__wallpapers {
+    padding: 0.75rem;
+  }
+}

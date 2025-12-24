@@ -1,0 +1,314 @@
+/**
+ * WallpaperCard 컴포넌트 스타일
+ */
+
+.wallpaper-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.wallpaper-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.wallpaper-card:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* 이미지 컨테이너 */
+.wallpaper-card__image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.wallpaper-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.wallpaper-card:hover .wallpaper-card__image {
+  transform: scale(1.05);
+}
+
+/* 좋아요 버튼 */
+.wallpaper-card__like-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.wallpaper-card__like-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.wallpaper-card__like-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.wallpaper-card__like-button.liked {
+  background: rgba(255, 107, 107, 0.9);
+  color: white;
+}
+
+.wallpaper-card__like-button.liked:hover {
+  background: rgba(255, 107, 107, 1);
+}
+
+/* 삭제 버튼 (관리자 전용) */
+.wallpaper-card__delete-button {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #dc3545;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.wallpaper-card__delete-button:hover {
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  transform: scale(1.1);
+}
+
+.wallpaper-card__delete-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.wallpaper-card__delete-button .loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.wallpaper-card__delete-button .delete-icon {
+  font-size: 14px;
+}
+
+.heart-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.loading-spinner {
+  font-size: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 카드 정보 영역 */
+.wallpaper-card__info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wallpaper-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 통계 정보 */
+.wallpaper-card__stats {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #666;
+}
+
+.stat-icon {
+  font-size: 12px;
+}
+
+.stat-value {
+  font-weight: 500;
+}
+
+/* 태그 */
+.wallpaper-card__tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tag {
+  background: #f0f0f0;
+  color: #666;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tag-more {
+  color: #999;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .wallpaper-card__info {
+    padding: 12px;
+  }
+  
+  .wallpaper-card__title {
+    font-size: 14px;
+  }
+  
+  .wallpaper-card__like-button {
+    width: 36px;
+    height: 36px;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .wallpaper-card__delete-button {
+    width: 36px;
+    height: 36px;
+    top: 8px;
+    left: 8px;
+  }
+  
+  .heart-icon {
+    font-size: 16px;
+  }
+}
+
+/* 터치 디바이스 지원 */
+@media (hover: none) and (pointer: coarse) {
+  .wallpaper-card {
+    /* 터치 디바이스에서는 호버 효과 제거 */
+  }
+  
+  .wallpaper-card:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wallpaper-card:hover .wallpaper-card__image {
+    transform: none;
+  }
+  
+  .wallpaper-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  .wallpaper-card__like-button {
+    /* 터치 디바이스에서 더 큰 터치 영역 */
+    width: 44px;
+    height: 44px;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .wallpaper-card__delete-button {
+    /* 터치 디바이스에서 더 큰 터치 영역 */
+    width: 44px;
+    height: 44px;
+    top: 8px;
+    left: 8px;
+  }
+}
+
+/* 미리보기 모드 */
+.wallpaper-card--preview {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  position: relative;
+}
+
+.wallpaper-card--preview .wallpaper-card__image {
+  transform: scale(1.1);
+}
+
+/* 터치 피드백 */
+.wallpaper-card {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .wallpaper-card {
+    background: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .wallpaper-card--preview {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+  
+  .wallpaper-card__title {
+    color: #ffffff;
+  }
+  
+  .stat {
+    color: #cccccc;
+  }
+  
+  .tag {
+    background: #404040;
+    color: #cccccc;
+  }
+  
+  .tag-more {
+    color: #999999;
+  }
+}

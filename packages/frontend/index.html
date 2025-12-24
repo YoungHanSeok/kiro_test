@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배경화면 다운로드 웹사이트</title>
+    
+    <!-- 폰트 preload로 로딩 최적화 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- 레이아웃 안정화를 위한 초기 CSS -->
+    <style>
+      /* 초기 로딩 시 레이아웃 안정화 */
+      #root {
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* 초기 로딩 스피너 */
+      .initial-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* 폰트가 로드되기 전 텍스트 크기 안정화 */
+      * {
+        font-display: swap;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 초기 로딩 화면 -->
+    <div id="initial-loading" class="initial-loading">
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- 초기 로딩 화면 제거 스크립트 -->
+    <script>
+      // React 앱이 마운트되면 로딩 화면 제거
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const loadingElement = document.getElementById('initial-loading');
+          if (loadingElement) {
+            loadingElement.style.opacity = '0';
+            loadingElement.style.transition = 'opacity 0.3s ease-out';
+            setTimeout(function() {
+              loadingElement.remove();
+            }, 300);
+          }
+        }, 500); // 최소 500ms 후 제거
+      });
+    </script>
+  </body>
+</html>

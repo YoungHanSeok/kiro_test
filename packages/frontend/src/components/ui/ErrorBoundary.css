@@ -1,0 +1,198 @@
+/**
+ * ErrorBoundary 컴포넌트 스타일
+ */
+
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem;
+  background: #f9fafb;
+}
+
+.error-boundary__content {
+  text-align: center;
+  max-width: 500px;
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.error-boundary__icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.error-boundary__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #dc2626;
+  margin: 0 0 1rem 0;
+}
+
+.error-boundary__message {
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+}
+
+.error-boundary__details {
+  text-align: left;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f3f4f6;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.error-boundary__details summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.error-boundary__details summary:hover {
+  color: #111827;
+}
+
+.error-boundary__stack {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #dc2626;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 0.5rem 0 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.error-boundary__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-boundary__button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  min-width: 120px;
+}
+
+.error-boundary__button--primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.error-boundary__button--primary:hover {
+  background: #2563eb;
+}
+
+.error-boundary__button--primary:focus {
+  outline: none;
+  ring: 2px solid #3b82f6;
+  ring-offset: 2px;
+}
+
+.error-boundary__button--secondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.error-boundary__button--secondary:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.error-boundary__button--secondary:focus {
+  outline: none;
+  ring: 2px solid #9ca3af;
+  ring-offset: 2px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .error-boundary {
+    padding: 1rem;
+    min-height: 300px;
+  }
+  
+  .error-boundary__content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .error-boundary__icon {
+    font-size: 3rem;
+  }
+  
+  .error-boundary__title {
+    font-size: 1.25rem;
+  }
+  
+  .error-boundary__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .error-boundary__button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .error-boundary {
+    background: #111827;
+  }
+  
+  .error-boundary__content {
+    background: #1f2937;
+    color: #f9fafb;
+  }
+  
+  .error-boundary__title {
+    color: #ef4444;
+  }
+  
+  .error-boundary__message {
+    color: #d1d5db;
+  }
+  
+  .error-boundary__details {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
+  .error-boundary__details summary {
+    color: #e5e7eb;
+  }
+  
+  .error-boundary__details summary:hover {
+    color: #f9fafb;
+  }
+  
+  .error-boundary__stack {
+    color: #ef4444;
+  }
+  
+  .error-boundary__button--secondary {
+    background: #374151;
+    color: #e5e7eb;
+    border-color: #4b5563;
+  }
+  
+  .error-boundary__button--secondary:hover {
+    background: #4b5563;
+    border-color: #6b7280;
+  }
+}
