@@ -32,6 +32,34 @@ export function HomePage() {
   const { error, isRetrying, handleError, clearError, retry } = useErrorHandler()
   const screenSize = useScreenSize()
 
+  // 페이징 상태
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
+  const totalPages = Math.ceil(filteredWallpapers.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const currentWallpapers = filteredWallpapers.slice(startIndex, endIndex)
+
+  // 컴포넌트 마운트 시 상태 초기화 (뒤로가기 대응)
+  useEffect(() => {
+    // 홈페이지에 진입할 때마다 테마 선택과 검색어 초기화
+    dispatch({ type: 'SET_SELECTED_THEME', payload: null })
+    dispatch({ type: 'SET_SEARCH_QUERY', payload: '' })
+    setCurrentPage(1) // 페이지도 초기화
+  }, [dispatch])
+
+  // 필터링된 배경화면이 변경될 때 페이지 초기화
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [filteredWallpapers.length])
+
+  // 페이지 변경 핸들러
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page)
+    // 페이지 변경 시 스크롤을 상단으로 이동
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   // 초기 데이터 로드
   useEffect(() => {
     const loadInitialData = async () => {
@@ -59,6 +87,10 @@ export function HomePage() {
         dispatch({ type: 'SET_WALLPAPERS', payload: sortedWallpapers })
         dispatch({ type: 'SET_THEMES', payload: themesData })
         
+        // 상태 초기화 확인 (뒤로가기 대응)
+        dispatch({ type: 'SET_SELECTED_THEME', payload: null })
+        dispatch({ type: 'SET_SEARCH_QUERY', payload: '' })
+        
         // 초기 로딩 화면 제거 (있다면)
         const initialLoading = document.getElementById('initial-loading')
         if (initialLoading) {
@@ -81,6 +113,10 @@ export function HomePage() {
 
   // 테마 선택 처리
   const handleThemeSelect = useCallback(async (theme: Theme | null) => {
+    // 전역 상태 먼저 업데이트
+    dispatch({ type: 'SET_SELECTED_THEME', payload: theme })
+    setCurrentPage(1) // 페이지 초기화
+    
     if (!theme) {
       // 모든 테마 선택 시 전체 배경화면 표시
       setFilteredWallpapers(wallpapers)
@@ -106,13 +142,17 @@ export function HomePage() {
     } catch (err) {
       console.error('테마별 배경화면 로드 중 오류 발생:', err)
       handleError(err)
+      // 오류 발생 시 테마 선택 해제
+      dispatch({ type: 'SET_SELECTED_THEME', payload: null })
     } finally {
       setLoading(false)
     }
-  }, [wallpapers]) // dispatch 제거
+  }, [wallpapers, dispatch, clearError, handleError])
 
   // 검색 처리
   const handleSearch = useCallback(async (query: string) => {
+    setCurrentPage(1) // 페이지 초기화
+    
     if (!query.trim()) {
       // 검색어가 비어있으면 현재 선택된 테마의 배경화면 또는 전체 배경화면 표시
       if (state.selectedTheme) {
@@ -138,7 +178,7 @@ export function HomePage() {
     } finally {
       setSearchLoading(false)
     }
-  }, [state.selectedTheme, wallpapers, handleThemeSelect]) // dispatch 제거
+  }, [state.selectedTheme, wallpapers, handleThemeSelect])
 
   // 검색어 초기화 처리
   const handleSearchClear = useCallback(() => {
@@ -332,12 +372,15 @@ export function HomePage() {
           {/* 메인 그리드 */}
           <div className="wallpapers-main">
             <WallpaperGrid
-              wallpapers={filteredWallpapers}
+              wallpapers={currentWallpapers}
               loading={loading}
               onWallpaperClick={handleWallpaperClick}
               onWallpaperDelete={handleWallpaperDelete}
               layout="grid"
-              paginationMode="infinite"
+              paginationMode="pagination"
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
             />
           </div>
 
